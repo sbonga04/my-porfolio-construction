@@ -1,0 +1,208 @@
+:root {
+  --bg-dark: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --bg-light: linear-gradient(135deg, #e0eafc, #cfdef3);
+  --text-dark: #ffffff;
+  --text-light: #1a1a1a;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  transition: background 0.6s ease, color 0.6s ease;
+  padding-top: 40px;
+}
+
+body.light-mode {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+/* Toggle Switch */
+.switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: relative;
+  cursor: pointer;
+  background-color: #555;
+  border-radius: 34px;
+  transition: background-color 0.4s ease;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+.slider:before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s ease, background-color 0.4s ease;
+  box-shadow: 0 0 0 0 rgba(255, 223, 0, 0.7),
+              0 0 8px 4px rgba(255, 223, 0, 0.5);
+}
+body.light-mode .slider {
+  background-color: #f1c40f;
+}
+body.light-mode .slider:before {
+  transform: translateX(26px);
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(255, 223, 0, 0.9),
+               0 0 12px rgba(255, 223, 0, 0.6);
+}
+
+/* Main Layout Flex Container */
+.main-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 20px 40px;
+  flex-wrap: wrap;
+}
+
+/* Left side: Details */
+.details {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.details > div {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+body.light-mode .details > div {
+  border-bottom: 1px solid #ccc;
+}
+.details h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: inherit;
+}
+.details p,
+.details ul {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+.details ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+.details li {
+  margin-bottom: 8px;
+}
+
+/* Right side: Tech Cards */
+.tech-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+}
+.tech-card {
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.tech-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Hover effect (works with script) */
+.tech-card:hover {
+  transform: scale(1.2) rotate(5deg);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tech-posts {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tech-card {
+    width: 100px;
+    height: 100px;
+  }
+
+  .details {
+    margin: 30px 15px;
+    gap: 20px;
+  }
+}
+
+.tech-card {
+  width: 120px;
+  height: 120px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-back {
+  background: #1a1a1a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+  font-size: 1.1em;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
